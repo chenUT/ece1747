@@ -61,7 +61,7 @@ public class Main {
             fs.mkdirs(in);
         }
 
-        // initial center randomly
+        // initial center using first K points
         String input = "./data.csv";
         BufferedReader br = null;
         br = new BufferedReader(new FileReader(input));
@@ -121,7 +121,6 @@ public class Main {
 
             job.waitForCompletion(true);
             iteration++;
-//            counter = job.getCounters().findCounter(KMeansReducer.Counter.CONVERGED).getValue();
         }
 
         long total_time = System.currentTimeMillis() - startTime;
