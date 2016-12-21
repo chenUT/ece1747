@@ -37,13 +37,16 @@ public class KMeansReducer  extends Reducer<KMClusterCenter, ImgVector, KMCluste
         KMClusterCenter center = new KMClusterCenter(newCenter);
         centers.add(center);
         for (ImgVector vector : values) {
-            // write to output for next iteration
+            // write output to prepare for the next iteration
             System.out.println("reducer write center: "+center+", vector: "+vector);
             context.write(center, vector);
         }
         System.out.println("reducer done");
     }
 
+    /**
+      Update the center.seq file to include the current center result
+    **/
     @SuppressWarnings("deprecation")
     @Override
     protected void cleanup(Context context) throws IOException, InterruptedException {
